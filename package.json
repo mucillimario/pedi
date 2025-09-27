@@ -7,10 +7,12 @@
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "papaparse": "^5.5.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "workbox-webpack-plugin": "^7.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,6 +25,10 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "workbox": {
+    "swSrc": "src/service-worker.js",
+    "swDest": "build/service-worker.js"
   },
   "browserslist": {
     "production": [
