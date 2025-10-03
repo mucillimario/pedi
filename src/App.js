@@ -51,10 +51,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Mi Tienda PWA</h1>
-        <button onClick={() => setVista('catalogo')}>Catálogo</button>
+        <h1>La tiendita</h1>
+        <button onClick={() => setVista('catalogo')}>Mostrar Catálogo</button>
         <button onClick={() => setVista('carrito')}>
-          🛒 Carrito ({carrito.reduce((acc, item) => acc + item.cantidad, 0)})
+          🛒Carrito  ({carrito.reduce((acc, item) => acc + item.cantidad, 0)})
         </button>
       </header>
       <main>
