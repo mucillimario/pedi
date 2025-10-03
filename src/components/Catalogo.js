@@ -7,12 +7,14 @@ const Catalogo = ({ productos, agregarAlCarrito }) => {
       {productos.map(producto => (
         <ProductoCard key={producto.id}>
           <ImagenProducto src={producto.url_imagen} alt={producto.nombre} />
+          <div>
           <h2>{producto.nombre}</h2>
           <p>{producto.descripcion}</p>
           <p>${producto.precio.toFixed(2)}</p>
           <BotonAgregar onClick={() => agregarAlCarrito(producto)}>
             Añadir al Carrito
           </BotonAgregar>
+          </div>
         </ProductoCard>
       ))}
     </CatalogoWrapper>
@@ -29,13 +31,14 @@ const CatalogoWrapper = styled.div`
 const ProductoCard = styled.div`
   border: 1px solid #ccc;
   padding: 16px;
-  width: 200px;
   text-align: center;
   border-radius: 8px;
   transition: transform 0.2s;
+  display:flex;
+  width:100%;
 
   &:hover {
-    transform: scale(1.05);
+    // transform: scale(1.05);
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
 
@@ -44,9 +47,10 @@ const ProductoCard = styled.div`
 `;
 
 const ImagenProducto = styled.img`
-  width: 100%;
+  width: 150px;
   height: auto;
   border-radius: 4px;
+  padding-right: 8px;
 `;
 
 const BotonAgregar = styled.button`
