@@ -1,7 +1,9 @@
 import React from 'react';
+import { toast } from 'react-toastify'; // Importa toast
+
 
 const Carrito = ({ carrito, ajustarCantidad }) => {
-  const numeroCliente = "+5493517516783"; // Reemplaza con el número de WhatsApp del cliente
+  const numeroCliente = "+54911xxxxxxxx"; // Reemplaza con el número de WhatsApp del cliente
   const total = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
 
   const construirMensaje = () => {
@@ -22,6 +24,31 @@ const Carrito = ({ carrito, ajustarCantidad }) => {
     window.open(`https://wa.me/${numeroCliente}?text=${mensajeCodificado}`, '_blank');
   };
 
+  const manejarAjusteCantidad = (id, cantidad, nombre) => {
+    ajustarCantidad(id, cantidad);
+    if (cantidad > 0) {
+      toast.info(`Cantidad de ${nombre} actualizada a ${cantidad}`, {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error(`${nombre} eliminado del carrito`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <div className="carrito">
       <h2>Tu Pedido</h2>
@@ -36,9 +63,9 @@ const Carrito = ({ carrito, ajustarCantidad }) => {
                 <h4>{item.nombre}</h4>
                 <p>${item.precio.toFixed(2)}</p>
                 <div>
-                  <button onClick={() => ajustarCantidad(item.id, item.cantidad - 1)}>-</button>
+                  <button onClick={() => manejarAjusteCantidad(item.id, item.cantidad - 1, item.nombre)}>-</button>
                   <span>{item.cantidad}</span>
-                  <button onClick={() => ajustarCantidad(item.id, item.cantidad + 1)}>+</button>
+                  <button onClick={() => manejarAjusteCantidad(item.id, item.cantidad + 1, item.nombre)}>+</button>
                 </div>
               </div>
             </li>
